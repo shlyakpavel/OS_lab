@@ -58,10 +58,10 @@ char* getDT(time_t rawtime)
     
     strftime(buffer, 80, format, info);
     
-    return buffer;
+    return strdup(buffer);
 }
 
-main(int argc, char ** argv) {
+int main(int argc, char ** argv) {
     struct dirent * d;
     struct stat buff;
     DIR * dp;
@@ -69,7 +69,7 @@ main(int argc, char ** argv) {
     if ((dp = opendir(argv[1])) == NULL)
         return (-1);
     
-    while (d = readdir(dp)) {
+    while ((d = readdir(dp))) {
         if (d->d_ino != 0) {
             ino_t inot = d -> d_ino;
             stat (d->d_name, &buff);
