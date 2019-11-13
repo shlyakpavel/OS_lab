@@ -5,7 +5,7 @@
 
 int main(void)
 /*  Создание программного канала    */
-/*  для команд ls и wc                 */
+/*  для двух наших несчастных фильтров    */
 {
     int pid, pid2;
     int fd[2];
@@ -27,17 +27,17 @@ int main(void)
                     break;
                 case 0:        /*  ПОТОМОК  #2 */
                     close(0); dup(fd[0]); close(fd[0]); close(fd[1]);
-                    execl("/usr/bin/wc", "wc", NULL);
-                    puts("Ошибка при вызове WC \n");
+                    execl("./filter2", "filter2", NULL);
+                    puts("Ошибка при вызове filter2 \n");
                     exit(-1);
                     break;
                 default: /*                     */
                     close(1); dup(fd[1]);
                     close(fd[1]); close(fd[0]);
-                    execl("/bin/ls", "ls", NULL);
+                    execl("./filter1", "filter1", NULL);
                     break;
             }
-            puts("Ошибка при вызове LS\n");
+            puts("Ошибка при вызове filter1\n");
             exit(-1);
         default: /*  ПРЕДОК ГЛАВНЫЙ  */
             dead = wait(&status);
