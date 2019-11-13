@@ -1,7 +1,6 @@
 // Разработать фильтр, ограничивающий длину каждого слова в строке 5 символами.
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #define MAX_LENGHT 5
 
