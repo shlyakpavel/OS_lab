@@ -7,9 +7,9 @@
 int main()
 {
     char c;
-    int cnt = 0;
+    unsigned short int cnt = 0;
     while ((c = getchar()) != EOF){
-        if (c == ' ')
+        if (c == ' ' || c == '\n')
             cnt = 0;
         else
             cnt++;
