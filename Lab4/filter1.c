@@ -6,7 +6,7 @@
 
 int main()
 {
-    char c;
+    int c;
     unsigned short int cnt = 0;
     while ((c = getchar()) != EOF){
         if (c == ' ' || c == '\n')

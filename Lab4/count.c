@@ -8,5 +8,6 @@ int main(void)  /*  COUNT.C  */
 {
     int count = 0;
     while (getchar() != EOF)
-        count++; printf("%d\n", count);
+        count++;
+    printf("%d\n", count);
 }
