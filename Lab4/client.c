@@ -35,8 +35,20 @@ exit (3);
 }
 
  /*распечатать данные, полученные из личного канала */
-while((n = read(fdpriv, line, LINESIZE)) > 0)
-write(1, line, n);
+
+//filter 2
+    #define MAX_LENGHT 50
+    int c;
+    unsigned short int cnt = 0;
+    while ((n = read(fdpriv,&c,1)) > 0){
+        if (c == '\n')
+            cnt = 0;
+        else
+            cnt++;
+        if (cnt <= MAX_LENGHT)
+            write(1, &c, 1);
+    }
+//end of filter 2
 
  /*личный именованный канал закрывается и удаляется из текущего каталога */
 close (fdpriv);
