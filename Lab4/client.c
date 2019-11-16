@@ -11,7 +11,6 @@ int main (int argc, char **argv)     /*”named pipe” client.c*/
 {
   struct message msg;
   int n, fdpub, fdpriv;
-  char line [LINESIZE];
 
 /* синтезировать имя личного программного канала и создать этот канал с правами чтения и записи для всех процессов*/
 sprintf(msg.privfifo, "Fifo%d", getpid());
