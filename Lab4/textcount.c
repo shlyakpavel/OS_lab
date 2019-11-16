@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+
 #define        R  0        /*  stdin                      */
 #define        W  1     /*  stdout                    */
 #define        TRUE  1
@@ -13,7 +14,6 @@ int main(void)        /*  Textcount.c  */
     FILE *fp;
     char c;
     int newline = TRUE;
-    int total;
     
     /* Установка программных каналов p и q */
     pipe(p);
@@ -42,7 +42,7 @@ int main(void)        /*  Textcount.c  */
             
             /* Теперь станд. вывод и  q[W] - синонимы  */
             /* Запуск внешней независимой программы Count */
-            execl("./count", "count", NULL);
+            execl("./filter1", "filter1", NULL);
             printf("textcount: Ошибка при вызове");
             exit(1);
         case -1: /* Cбой при вызове fork()  */
@@ -88,8 +88,21 @@ int main(void)        /*  Textcount.c  */
             /* Теперь подключаем ввод результата  */
             /* из канала Q                        */
             close(R);  dup(q[R]); close(q[R]);
-            scanf("%d", &total);
-            printf("Общее число знаков  %d\n", total);
+//filter2.c
+#define MAX_LENGHT 50
+    int c;
+    unsigned short int cnt = 0;
+    while ((c = getchar()) != EOF){
+        if (c == '\n')
+            cnt = 0;
+        else
+            cnt++;
+        if (cnt <= MAX_LENGHT)
+            putchar(c);
+    }
+//end filter2
+
+
             exit(0);
     }
 }
