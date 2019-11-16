@@ -4,6 +4,6 @@ all:
 	cc conveer.c -o conveer
 	cc textcount.c -o textcount
 	cc client.c -o client
-	cc server.c server.h -o server
+	cc server.c -o server
 clean:
 	rm filter1 filter2 conveer textcount client server
